@@ -9,6 +9,12 @@ Vue.filter('readMore', function (text, length, suffix) {
     return text.substring(0, length) + suffix;
 });
 
+let url = window.location.origin
+
+if(url.includes("localhost")){
+  var pathArray = window.location.pathname.split( '/' );
+  url = url + "/" + pathArray [1] + "/";
+}
 
 var v = new Vue({
    el:'#bigApp',
@@ -16,8 +22,7 @@ var v = new Vue({
       date: '',
       step1:true,
       step2:false,
-      // link:'http://ubudserendipityvilla.com/',
-      link:'http://ubudserendipityvilla.com/',
+      link:url,
       newBooking:{
             idroom:null,
             selectRoomName:null,

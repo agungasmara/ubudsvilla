@@ -73,7 +73,7 @@ require_once 'vendor/autoload.php';
  */
 	//define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 $dev_machines = [
-	'localhost:8000'
+	'localhost'
 ];
 
 $env = 'production';
