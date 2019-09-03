@@ -68,7 +68,7 @@
                                 
                                 <div class="room-detail_form">
 
-                                    <a href="<?= site_url("book/now") ?>" class="awe-btn awe-btn-default">BOOK NOW!</a>
+                                    <a href="<?= site_url("book/now/2") ?>" class="awe-btn awe-btn-default">BOOK NOW!</a>
 
 
                                 </div>
