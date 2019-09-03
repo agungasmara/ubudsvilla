@@ -23,6 +23,7 @@ var v = new Vue({
       date: '',
       step1:true,
       step2:false,
+      step3:false,
       link:url,
       newBooking:{
             idroom:null,
