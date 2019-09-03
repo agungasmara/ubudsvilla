@@ -28,7 +28,7 @@ class Book extends CI_Controller
     
     
 
-    public function direct($idroom = '')
+    public function now($idroom = '')
     {
         
         $this->templatefront->loadExternalCss('
@@ -76,44 +76,44 @@ class Book extends CI_Controller
         echo json_encode($data); 
     }
 
-    public function now()
-    {
+    // public function now()
+    // {
         
-        $contentDir      = base_url() . '/theme_costume/static_content/';
-        $tourDetailFiles = $contentDir . 'villa-room-details.json';
-        $tourDetails     = file_get_contents($tourDetailFiles);
-        if (!empty($tourDetails))
-            $tourDetails = json_decode($tourDetails, TRUE);
+    //     $contentDir      = base_url() . '/theme_costume/static_content/';
+    //     $tourDetailFiles = $contentDir . 'villa-room-details.json';
+    //     $tourDetails     = file_get_contents($tourDetailFiles);
+    //     if (!empty($tourDetails))
+    //         $tourDetails = json_decode($tourDetails, TRUE);
         
-        $roomDetail = collect($tourDetails);
-        $idroom       = $this->input->post('room');
-        $data["room"] = $idroom;
+    //     $roomDetail = collect($tourDetails);
+    //     $idroom       = $this->input->post('room');
+    //     $data["room"] = $idroom;
             
-            $this->templatefront->loadExternalCss('
-                    <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-airbnb-style-datepicker@latest/dist/vue-airbnb-style-datepicker.min.css"/>'.
-                    '<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">'
-                );
+    //         $this->templatefront->loadExternalCss('
+    //                 <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-airbnb-style-datepicker@latest/dist/vue-airbnb-style-datepicker.min.css"/>'.
+    //                 '<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">'
+    //             );
             
-            $this->templatefront->loadExternalJs('<script src="' . base_url() . '/theme_costume/plugin/vue/js/vue.js"></script>
-                <script src="https://unpkg.com/vuejs-datepicker"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/axios.min.js"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/pagination.js"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/vue-airbnb-style-datepicker.min.js"></script>
-                <script src="https://unpkg.com/vee-validate@2.0.0-rc.21/dist/vee-validate.js"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/date_fns.js"></script>
-                <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/app.js"></script>');
+    //         $this->templatefront->loadExternalJs('<script src="' . base_url() . '/theme_costume/plugin/vue/js/vue.js"></script>
+    //             <script src="https://unpkg.com/vuejs-datepicker"></script>
+    //             <script src="' . base_url() . '/theme_costume/plugin/vue/js/axios.min.js"></script>
+    //             <script src="' . base_url() . '/theme_costume/plugin/vue/js/pagination.js"></script>
+    //             <script src="' . base_url() . '/theme_costume/plugin/vue/js/vue-airbnb-style-datepicker.min.js"></script>
+    //             <script src="https://unpkg.com/vee-validate@2.0.0-rc.21/dist/vee-validate.js"></script>
+    //             <script src="' . base_url() . '/theme_costume/plugin/vue/js/date_fns.js"></script>
+    //             <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
+    //             <script src="' . base_url() . '/theme_costume/plugin/vue/js/app.js"></script>');
             
-            $this->templatefront->loadContent('frontpage/book_view', array(
-                "og_image" => "https://localhost/ubudsvilla/theme_costume//images/slider/slider-01.jpg",
-                "og_title" => "Ubud Serendipity Villa",
-                "og_desc" => "Ubud Serendipity Villa",
-                "og_url" => "https://ubudserendipityvilla.com",
-                "allRoom" => $roomDetail,
-                "data" => $data
-            ));
+    //         $this->templatefront->loadContent('frontpage/book_view', array(
+    //             "og_image" => "https://localhost/ubudsvilla/theme_costume//images/slider/slider-01.jpg",
+    //             "og_title" => "Ubud Serendipity Villa",
+    //             "og_desc" => "Ubud Serendipity Villa",
+    //             "og_url" => "https://ubudserendipityvilla.com",
+    //             "allRoom" => $roomDetail,
+    //             "data" => $data
+    //         ));
             
-    }
+    // }
     
     
     public function checkout()
