@@ -10,11 +10,11 @@ Vue.filter('readMore', function (text, length, suffix) {
 });
 
 //dynamic url
-let url = window.location.origin+"/"
+let url = window.location.origin+"/";
 
 if(url.includes("localhost")){
   var pathArray = window.location.pathname.split( '/' );
-  url = url + "/" + pathArray [1] + "/";
+  url = url + pathArray [1] + "/";
 }
 
 var v = new Vue({
@@ -58,9 +58,25 @@ var v = new Vue({
     created(){
         this.getOptionRooms();
         this.getOptionCountry();
+        this.getDirectDataRoom();
     },
     methods:{
+        getDirectDataRoom(){
+          let idroom = document.getElementById("idroomselected").value
+          if(idroom!=''){
+              axios.get(this.link + "book/getdirectdataroom/"+idroom)
+                .then(response => {
+                   //console.log(response.data.dataSelectedRoom[idroom-1])
+                   v.selectRoom = response.data.dataSelectedRoom[idroom-1]
+                   if(v.selectRoom){
+                      this.step1=false
+                      this.step2=true
+                      this.isShowInfoRoom=true
+                   }
+                })
+          }
 
+        },
         getOptionRooms() {
             let self = this
             axios.get(this.link + "/theme_costume/static_content/villa-room-details.json")
@@ -86,12 +102,11 @@ var v = new Vue({
         },
         selectIdRoom(room){ 
           v.selectRoom = room
-           v.newBooking.idroom = room.id;
-           
-           v.step1 = false;
-           v.step2 = true;  
-           v.isShowInfoRoom = true;
-           v.showRoom();
+          v.newBooking.idroom = room.id;
+          
+          v.step1 = false;
+          v.step2 = true;  
+          v.isShowInfoRoom = true;
         },
         showAllRoom(){ 
                axios.get(this.link+"room/showAllRoom/").then(function(response){
@@ -99,12 +114,6 @@ var v = new Vue({
                        v.rooms = response.data;
                     }
             })
-        },
-        showRoom(){ 
-           
-           
-                  
-            
         },
           updateNewBookingCountry(){ 
               v.newBooking.country = this.selectCountry.name

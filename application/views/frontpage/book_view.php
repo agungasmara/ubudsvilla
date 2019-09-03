@@ -20,7 +20,7 @@
 
 <!-- RESERVATION -->
 <section class="section-reservation-page bg-white" id="bigApp">
-
+    <input type="hidden" value="<?=$idroom?>" id="idroomselected">
     <div class="container">
         <div class="reservation-page">
             <!-- STEP -->
@@ -28,7 +28,7 @@
                 <ul>
                     <li :class="{'active': step1}"><a href="#"><span>1.</span> Choose Room</a></li>
                     <li :class="{'active': step2}"><a href="#"><span>2.</span> Make a Reservation</a></li>
-                    <li :class="{'active': successBookingMessage}"><a href="#"><span>3.</span> Confirmation</a></li>
+                    <li :class="{'active': successBookingMessage}"><a href="#"><span>3.</span> Final Booking</a></li>
                 </ul>
             </div>
             <!-- END / STEP -->
@@ -99,7 +99,7 @@
 
                                 <div>
 
-                                    <label>Villa to Rent? <?php echo $data["room"];  ?> <sup>*</sup></label>
+                                    <label>Villa to Rent? <sup>*</sup></label>
                                     <div class="has-text-danger" v-html="formValidate.idroom"> </div>
 
                                     <vue-multiselect 
