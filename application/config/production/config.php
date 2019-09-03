@@ -465,7 +465,7 @@ $config['csrf_token_name'] = 'cs_number';
 $config['csrf_cookie_name'] = 'cs_cookie';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
-$config['csrf_exclude_uris'] = array('hideend/registrasit','hideend/invoice/view', 'hideend/IPN/processDode','hideend/Ipn/process2', 'hideend/funds','hideend/midtrans/vtdirect/vtdirect_cc_charge','hideend/midtrans/vtweb/vtweb_checkout','hideend/callback/notif','pembayaran/manual_notif','hookbot','join/kirim_email','hideend/content/upload','book/checkout');
+$config['csrf_exclude_uris'] = array('hideend/registrasit','hideend/invoice/view', 'hideend/IPN/processDode','hideend/Ipn/process2', 'hideend/funds','hideend/midtrans/vtdirect/vtdirect_cc_charge','hideend/midtrans/vtweb/vtweb_checkout','hideend/callback/notif','pembayaran/manual_notif','hookbot','join/kirim_email','hideend/content/upload','book/checkout','book/sendEmail/');
 
 /*
 |--------------------------------------------------------------------------
