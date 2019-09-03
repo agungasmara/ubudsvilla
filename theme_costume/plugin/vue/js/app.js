@@ -9,7 +9,8 @@ Vue.filter('readMore', function (text, length, suffix) {
     return text.substring(0, length) + suffix;
 });
 
-let url = window.location.origin
+//dynamic url
+let url = window.location.origin+"/"
 
 if(url.includes("localhost")){
   var pathArray = window.location.pathname.split( '/' );
@@ -132,6 +133,8 @@ var v = new Vue({
                               v.idTableEmailQueue = response.data.idsendemail;
                               v.successMSG = response.data.msg;
                               v.isLoading = false
+                              v.step1=false,      
+                              v.step2=false,      
                               v.successBookingMessage=true,      
                               v.bookingFormActive=false, 
                               v.clearAll();

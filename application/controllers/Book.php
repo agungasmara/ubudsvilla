@@ -27,58 +27,6 @@ class Book extends CI_Controller
     }
     
     
-    
-    public function step($step_no)
-    {
-        
-        $contentDir      = base_url() . '/theme_costume/static_content/';
-        $tourDetailFiles = $contentDir . 'villa-room-details.json';
-        $tourDetails     = file_get_contents($tourDetailFiles);
-        if (!empty($tourDetails))
-            $tourDetails = json_decode($tourDetails, TRUE);
-        
-        $roomDetail = collect($tourDetails);
-        if ($step_no == 1) {
-            
-            $this->templatefront->loadContent('frontpage/book_step1_view', array(
-                "og_image" => "https://localhost/ubudsvilla/theme_costume//images/slider/slider-01.jpg",
-                "og_title" => "Ubud Serendipity Villa",
-                "og_desc" => "Ubud Serendipity Villa",
-                "og_url" => "https://greenbiketour.com",
-                "allRoom" => $roomDetail
-                
-            ));
-        } elseif ($step_no == 2) {
-            $idroom       = $this->input->post('room');
-            $data["room"] = $idroom;
-            
-            $this->templatefront->loadExternalCss('
-                    <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-airbnb-style-datepicker@latest/dist/vue-airbnb-style-datepicker.min.css"/>');
-            
-            $this->templatefront->loadExternalJs('<script src="' . base_url() . '/theme_costume/plugin/vue/js/vue.js"></script>
-                <script src="https://unpkg.com/vuejs-datepicker"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/axios.min.js"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/pagination.js"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/vue-airbnb-style-datepicker.min.js"></script>
-                    <script src="' . base_url() . '/theme_costume/plugin/vue/js/date_fns.js"></script>
-                <script src="' . base_url() . '/theme_costume/plugin/vue/js/app.js"></script>');
-            
-            $this->templatefront->loadContent('frontpage/book_step2_view', array(
-                "og_image" => "https://localhost/ubudsvilla/theme_costume//images/slider/slider-01.jpg",
-                "og_title" => "Ubud Serendipity Villa",
-                "og_desc" => "Ubud Serendipity Villa",
-                "og_url" => "https://greenbiketour.com",
-                "allRoom" => $roomDetail,
-                "data" => $data
-            ));
-            
-        }
-        
-        
-        
-        
-    }
-
     public function now()
     {
         
@@ -107,7 +55,7 @@ class Book extends CI_Controller
                 <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
                 <script src="' . base_url() . '/theme_costume/plugin/vue/js/app.js"></script>');
             
-            $this->templatefront->loadContent('frontpage/book_step2_view', array(
+            $this->templatefront->loadContent('frontpage/book_view', array(
                 "og_image" => "https://localhost/ubudsvilla/theme_costume//images/slider/slider-01.jpg",
                 "og_title" => "Ubud Serendipity Villa",
                 "og_desc" => "Ubud Serendipity Villa",
