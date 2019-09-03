@@ -150,7 +150,7 @@ var v = new Vue({
                               v.bookingFormActive=false, 
                               v.clearAll();
 
-                              axios.post(this.link+"book/sendEmail/").then(function(response){
+                              axios.post(v.link+"book/sendEmail/").then(function(response){
                                     console.log("sukses kirim email")
                                     return true
                                  })
