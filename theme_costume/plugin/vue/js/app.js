@@ -148,10 +148,10 @@ var v = new Vue({
                               v.isLoading = false
                               v.clearAll();
                               v.successBookingMessage=true;
-                              // axios.post(v.link+"book/sendEmail/").then(function(response){
-                              //       console.log("sukses kirim email")
-                              //       return true
-                              //    })
+                              axios.post(v.link+"book/sendEmail/").then(function(response){
+                                    console.log("sukses kirim email")
+                                    return true
+                                 })
                           }
                          });
 
