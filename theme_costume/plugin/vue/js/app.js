@@ -69,8 +69,8 @@ var v = new Vue({
                    //console.log(response.data.dataSelectedRoom[idroom-1])
                    v.selectRoom = response.data.dataSelectedRoom[idroom-1]
                    if(v.selectRoom){
-                      v.idroom = v.selectRoom.idroom
-                      v.selectRoomName =  v.selectRoom.name
+                      v.newBooking.idroom = v.selectRoom.idroom
+                      v.newBooking.selectRoomName =  v.selectRoom.name
                       this.step1=false
                       this.step2=true
                       this.isShowInfoRoom=true
