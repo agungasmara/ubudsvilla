@@ -181,11 +181,12 @@ class Book extends CI_Controller
             
             $collection    = collect($tourDetails);
             $selectRoom    = $collection->where('id', $idroom);
-            $roomName      = $selectRoom->pluck("name")->first();
             $price         = $selectRoom->pluck("startprice")->first();
             $arrivaldate   = $this->input->post('arrivaldate');
             $departuredate = $this->input->post('departuredate');
             
+
+
             $stayduration = abs((strtotime($departuredate) - strtotime($arrivaldate)) / 86400);
             
                         
@@ -195,12 +196,12 @@ class Book extends CI_Controller
             
             $data = array(
                 'idroom' => $this->input->post('idroom'),
-                'roomname' => $roomName,
+                'roomname' => $this->input->post('roomname'),
                 'fullname' => $this->input->post('fullname'),
                 'arrivaldate' => $this->common->converttodate($this->input->post('arrivaldate')),
                 'departuredate' => $this->common->converttodate($this->input->post('departuredate')),
                 'totalAmountPay' => $totalAmountPay,
-                'stayduration' => $this->input->post('departuredate'),
+                'stayduration' => $stayduration,
                 'email' => $this->input->post('email'),
                 'contact' => $this->input->post('contact'),
                 'country' => $this->input->post('country'),
@@ -219,16 +220,16 @@ class Book extends CI_Controller
                 
                 
                 //Villa
-                $msg = str_replace("%_villa", $roomName, $msg);
+                $msg = str_replace("%_villa",  $data['roomname'], $msg);
                 
                 //Checkin
-                $msg = str_replace("%_checkin", $arrivaldate, $msg);
+                $msg = str_replace("%_checkin", $data['arrivaldate'], $msg);
                 
                 //Checkout
-                $msg = str_replace("%_checkout", $departuredate, $msg);
+                $msg = str_replace("%_checkout", $data['departuredate'], $msg);
                 
                 //Duration
-                $msg = str_replace("%_duration", $stayduration, $msg);
+                $msg = str_replace("%_duration", $data['stayduration'], $msg);
                 
                                
                 //Total
@@ -241,7 +242,7 @@ class Book extends CI_Controller
                                 
                 
 
-                //send email to Admin
+                //send email to User
                 $idEmailQueue = $this->sendEmailQueueTable($subject, $msg, $email, $replayto);
                 
                  $result=array(

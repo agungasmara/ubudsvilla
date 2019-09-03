@@ -26,7 +26,6 @@ var v = new Vue({
       link:url,
       newBooking:{
             idroom:null,
-            selectRoomName:null,
             roomname:'',
             arrivaldate:'',
             departuredate:'',
@@ -69,8 +68,8 @@ var v = new Vue({
                    //console.log(response.data.dataSelectedRoom[idroom-1])
                    v.selectRoom = response.data.dataSelectedRoom[idroom-1]
                    if(v.selectRoom){
-                      v.newBooking.idroom = v.selectRoom.idroom
-                      v.newBooking.selectRoomName =  v.selectRoom.name
+                      v.newBooking.idroom = v.selectRoom.id
+                      v.newBooking.roomname =  v.selectRoom.name
                       this.step1=false
                       this.step2=true
                       this.isShowInfoRoom=true
@@ -131,6 +130,9 @@ var v = new Vue({
                       alert('Please Complete the from below')
                       return false;
                   } else {
+                      v.step1=false      
+                      v.step2=false  
+                      v.step3=true  
                       this.isLoading = true
                       this.bookingFormActive = false
                       this.departuredate = ((this.departuredate==null)?this.arrivaldate:this.departuredate)
@@ -144,16 +146,12 @@ var v = new Vue({
                               v.idTableEmailQueue = response.data.idsendemail;
                               v.successMSG = response.data.msg;
                               v.isLoading = false
-                              v.step1=false,      
-                              v.step2=false,      
-                              v.successBookingMessage=true,      
-                              v.bookingFormActive=false, 
                               v.clearAll();
-
-                              axios.post(v.link+"book/sendEmail/").then(function(response){
-                                    console.log("sukses kirim email")
-                                    return true
-                                 })
+                              v.successBookingMessage=true;
+                              // axios.post(v.link+"book/sendEmail/").then(function(response){
+                              //       console.log("sukses kirim email")
+                              //       return true
+                              //    })
                           }
                          });
 

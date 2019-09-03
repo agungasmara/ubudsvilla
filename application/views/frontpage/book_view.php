@@ -28,7 +28,7 @@
                 <ul>
                     <li :class="{'active': step1}"><a href="#"><span>1.</span> Choose Room</a></li>
                     <li :class="{'active': step2}"><a href="#"><span>2.</span> Make a Reservation</a></li>
-                    <li :class="{'active': successBookingMessage}"><a href="#"><span>3.</span> Final Booking</a></li>
+                    <li :class="{'active': step3}"><a href="#"><span>3.</span> Final Booking</a></li>
                 </ul>
             </div>
             <!-- END / STEP -->
@@ -86,12 +86,6 @@
                     <div class="reservation_content">
 
                         <div class="reservation-billing-detail">
-                                <div  v-if="isLoading">
-                                        <img src="<?=  $this->common->theme_custome(); ?>/images/loading.gif" style="display: block;margin-left: auto;margin-right: auto;height: 100px!important">
-                                </div>
-                            <div v-if="successBookingMessage">
-                                <h4>BOOKING SUCCESS!</h4>
-                            </div>
                             <div v-if="bookingFormActive">
                                 <h4>FINALIZING BOOKING</h4>
 
@@ -199,6 +193,22 @@
 
                                     <button class="awe-btn awe-btn-13" @click="addBooking">PLACE ORDER</button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 col-lg-9" v-if="step3">
+
+                    <div class="reservation_content">
+
+                        <div class="reservation-billing-detail">
+                                <div  v-if="isLoading">
+                                        <img src="<?=  $this->common->theme_custome(); ?>/images/loading.gif" style="display: block;margin-left: auto;margin-right: auto;height: 100px!important">
+                                </div>
+                            <div v-if="successBookingMessage">
+                                <h4>BOOKING SUCCESS!</h4>
                             </div>
                         </div>
                     </div>
