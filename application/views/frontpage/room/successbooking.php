@@ -11,7 +11,7 @@
                         <div class="tourmaster-single-header-container tourmaster-container" style="height:300px!important">
                             <div class="tourmaster-single-header-container-inner">
                                 <div class="tourmaster-single-header-title-wrap tourmaster-item-pdlr" style="height:300px!important">
-                                    <h1 class="tourmaster-single-header-title">Booking Success!</h1>
+                                    <h1 class="tourmaster-single-header-title">Enquiry Success!</h1>
                                 </div>
                                 
                             </div>
@@ -21,8 +21,8 @@
                         
                         <div class="tourmaster-tour-info-outer">
                             <div class="tourmaster-tour-info-outer-container tourmaster-container">
-                                <h1 class="tourmaster-single-header-title">Thank You for Booking!</h1>
-                                <h5 class="tourmaster-single-header-title">We Received your booking and our Team would reach you very soon! <br><a href="<?php echo base_url()?>">Back to home >></a></h5>
+                                <h1 class="tourmaster-single-header-title">Thank You for Enquiry!</h1>
+                                <h5 class="tourmaster-single-header-title">We Received your booking enquiry and our Team would reach you very soon! <br><a href="<?php echo base_url()?>">Back to home >></a></h5>
                             </div>
                         </div>
                         
