@@ -26,6 +26,17 @@ class Book_model extends CI_Model
 	{
 		$this->db->where("id", $id)->update("email_queue", $data);
 	}
+
+    public function showAll(){
+		
+      	$query = $this->db
+       				->get('book-details');
+        if($query->num_rows() > 0){
+            return $query->result();
+        }else{
+            return false;
+        }
+    }
 }
 
 ?>

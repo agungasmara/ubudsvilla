@@ -33,8 +33,8 @@ class Login extends CI_Controller
 
 	public function pro($redirect="")
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_error_view("/hidepage/error/login_error.php");
+		$this->template->set_layout("/hidepage/layout/login_layout.php");
 		if ($this->user_model->check_block_ip()) {
 			$this->template->error(lang("error_26"));
 		}
@@ -92,6 +92,7 @@ class Login extends CI_Controller
     		}
     	}
 
+    	//login
     	if($this->settings->info->secure_login) {
 			// Generate a token
 			$token = rand(1,100000) . $email;
@@ -165,8 +166,8 @@ class Login extends CI_Controller
 
 	public function google_login()
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_error_view("hidepage/error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		if ($this->settings->info->disable_social_login) {
 			$this->template->error(lang("error_30"));
 		}
@@ -309,8 +310,8 @@ class Login extends CI_Controller
 	public function facebook_login_pro()
 	{
 		//echo '<pre>'; print_r( "masuk" );die; //test
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_error_view("hidepage/error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		if ($this->settings->info->disable_social_login) {
 			$this->template->error(lang("error_30"));
 		}
@@ -417,8 +418,8 @@ class Login extends CI_Controller
 
 	public function twitter_login()
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_error_view("hidepage/error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		if ($this->settings->info->disable_social_login) {
 			$this->template->error(lang("error_30"));
 		}
@@ -460,8 +461,8 @@ class Login extends CI_Controller
 
 	public function twitter_login_pro()
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_error_view("hidepage/error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		if ($this->settings->info->disable_social_login) {
 			$this->template->error(lang("error_30"));
 		}
@@ -582,7 +583,7 @@ class Login extends CI_Controller
 
 	public function logout($hash)
 	{
-		$this->template->set_error_view("error/login_error.php");
+		$this->template->set_error_view("hidepage/error/login_error.php");
 		$config = $this->config->item("cookieprefix");
 		$this->load->helper("cookie");
 		if ($hash != $this->security->get_csrf_hash() ) {
@@ -600,10 +601,11 @@ class Login extends CI_Controller
 
 	public function resetpw($token,$userid)
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_error_view("hidepage/error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		$userid = intval($userid);
 		// Check
+		//echo "<pre>"; print_r($token);die;
 		$user = $this->login_model->getResetUser($token, $userid);
 		if ($user->num_rows() == 0) {
 			$this->template->error(lang("error_42"));
@@ -614,7 +616,7 @@ class Login extends CI_Controller
 			$this->template->error(lang("error_43"));
 		}
 
-		$this->template->loadContent("login/resetpw.php",
+		$this->template->loadContent("hidepage/login/resetpw.php",
 			array(
 				"token" => $token,
 				 "userid" => $userid
@@ -625,8 +627,8 @@ class Login extends CI_Controller
 
 	public function resetpw_pro($token, $userid)
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
+		$this->template->set_error_view("hidepage/error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
 		$userid = intval($userid);
 		// Check
 		$user = $this->login_model->getResetUser($token, $userid);
@@ -663,15 +665,15 @@ class Login extends CI_Controller
 
 	public function forgotpw()
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
-		$this->template->loadContent("login/forgotpw.php", array());
+		$this->template->set_error_view("hidepage/error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
+		$this->template->loadContent("hidepage/login/forgotpw.php", array());
 	}
 
 	public function forgotpw_pro()
 	{
-		$this->template->set_layout("layout/login_layout.php");
-		$this->template->set_error_view("error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
+		$this->template->set_error_view("hidepage/error/login_error.php");
 		$email = $this->input->post("email", true);
 
 		$log = $this->login_model->getResetLog($_SERVER['REMOTE_ADDR']);
@@ -688,6 +690,8 @@ class Login extends CI_Controller
 
 		// Check for email
 		$user = $this->login_model->getUserEmail($email);
+
+		// echo "<pre>"; print_r($this->db->last_query());die;
 		if ($user->num_rows() == 0) {
 			$this->template->error(
 				lang("error_47")
@@ -727,9 +731,9 @@ class Login extends CI_Controller
 
 	public function banned()
 	{
-		$this->template->set_error_view("error/login_error.php");
-		$this->template->set_layout("layout/login_layout.php");
-		$this->template->loadContent("login/banned.php", array());
+		$this->template->set_error_view("hidepage/error/login_error.php");
+		$this->template->set_layout("hidepage/layout/login_layout.php");
+		$this->template->loadContent("hidepage/login/banned.php", array());
 	}
 
 

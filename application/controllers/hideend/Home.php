@@ -23,10 +23,14 @@ class Home extends CI_Controller
 	public function index()
 	{	
 		if($this->user->loggedin && isset($this->user->info->user_role_id) &&
-           ($this->user->info->admin || $this->user->info->admin_settings || $this->user->info->admin_members || $this->user->info->admin_payment)) {
-			$this->admin();
+           ($this->user->info->admin)) {
+
+           	redirect(site_url('/hideend/book/all/'),'refresh');
+			// $this->admin();
 		}else{
-			$this->memberpage();;			
+
+           	redirect(site_url('/hideend/pengajuan/status'),'refresh');
+			// $this->memberpage();;			
 		}
 	}
 

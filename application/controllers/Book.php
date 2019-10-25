@@ -243,7 +243,7 @@ class Book extends CI_Controller
                 
 
                 //send email to User
-                $idEmailQueue = $this->sendEmailQueueTable($subject, $msg, $email, $replayto);
+                 $idEmailQueue = $this->sendEmailQueueTable($subject, $msg, $email, $replayto);
                 
                  $result=array(
                             "error" => false,
@@ -300,12 +300,8 @@ class Book extends CI_Controller
                         );
             $this->book_model->update_emailQueue($res->id,$dataEmail);
         }
-
-
-
-        
-        
     }
+    
     function select_empty($element)
     {
         if ($element === 'null') {
